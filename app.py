@@ -56,8 +56,9 @@ if st.button("Get Response"):
 # Sidebar with information about the model
 st.sidebar.header("About the Model")
 st.sidebar.write("""
-This model is fine-tuned on cricket rules and can answer questions like:
+This model is fine-tuned on cricket and can answer questions like:
 - What is a no-ball in cricket?
 - What are the rules for a run out?
+- Why RCB is better than CSK ?
 - Etc.
 """)
