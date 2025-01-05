@@ -26,7 +26,7 @@ def query_cricket_rules_with_google_ai(instruction, input_text):
     return response.text
 
 # Streamlit App Layout
-st.title("Cricket Model")
+st.title("Cricket LLM")
 st.header("Ask the model about cricket rules")
 
 # User input for instruction and cricket scenario
