@@ -30,7 +30,6 @@ st.title("Cricket LLM")
 st.header("Ask the model about cricket")
 
 # User input for instruction and cricket scenario
-instruction = st.text_input("Instruction:", "Explain the rule for a no-ball.")
 input_text = st.text_area("Input:", "The bowler steps beyond the crease line.")
 
 # Query button
