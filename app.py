@@ -36,7 +36,7 @@ If the input is unrelated to sports, respond with:
     return response.text
 
 # Streamlit App Layout
-st.title("Cricket LLM")
+st.title("Cricket LIM")
 st.header("Ask the model about cricket")
 
 # User input for cricket scenario
