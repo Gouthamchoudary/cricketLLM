@@ -12,20 +12,14 @@ genai.configure(api_key="AIzaSyBv5IyF5DMovl_T9ryDWLnGFuEhhRrtamc")
 google_model = genai.GenerativeModel("gemini-1.5-flash")
 
 # Function to query the Hugging Face Cricket Rules Model
+def query_cricket_rules_with_hf(input_text):
+    payload = {
+        "inputs": f"Input: {input_text}\nResponse:"
+    }
+    response = requests.post(HUGGING_FACE_API_URL, headers=HUGGING_FACE_HEADERS, json=payload)
+    return response.json()
 
 # Function to generate content with Google Generative AI
-def query_cricket_rules_with_google_ai(instruction, input_text):
-    prompt = f"Instruction: {instruction}\nInput: {input_text}\nResponse:"
-    response = google_model.generate_content(prompt)
-    return response.text
-
-# Streamlit App Layout
-st.title("Cricket LLM")
-st.header("Ask the model about cricket")
-
-# User input for instruction and cricket scenario
-input_text = st.text_area("Input:", "The bowler steps beyond the crease line.")
-
 def query_cricket_rules_with_google_ai(input_text):
     # Prompt to let Google decide if input is sports-related
     prompt = (
@@ -36,26 +30,30 @@ def query_cricket_rules_with_google_ai(input_text):
     )
     response = google_model.generate_content(prompt)
     return response.text
+
+# Streamlit App Layout
+st.title("Cricket xLM")
+st.header("Ask the model about cricket")
+
+# User input for cricket scenario
+input_text = st.text_area("Input:", "The bowler steps beyond the crease line.")
+
 # Query button
 if st.button("Get Response"):
-    if instruction and input_text:
+    if input_text:
         try:
             # Try querying Hugging Face API first
-            response = query_cricket_rules_with_hf(instruction, input_text)
-            
+            response = query_cricket_rules_with_hf(input_text)
             if "error" in response:
-                st.error(f"loading:")
-                raise Exception("")
+                raise Exception("Error with Hugging Face API")
             else:
                 st.success(f"Response: {response['choices'][0]['text'].strip()}")
-        
-        except Exception as e:
+        except Exception:
             # Fallback to Google Generative AI
-           
-    google_ai_response = query_cricket_rules_with_google_ai(input_text)
+            google_ai_response = query_cricket_rules_with_google_ai(input_text)
             st.success(f"Response: {google_ai_response}")
     else:
-        st.warning("Please fill out both fields!")
+        st.warning("Please fill out the input field!")
 
 # Sidebar with information about the model
 st.sidebar.header("About the Model")
@@ -63,6 +61,5 @@ st.sidebar.write("""
 This model is fine-tuned on cricket and can answer questions like:
 - What is a no-ball in cricket?
 - What are the rules for a run out?
-- Why RCB is better than CSK ?
 - Etc.
 """)
