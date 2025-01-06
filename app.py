@@ -12,12 +12,6 @@ genai.configure(api_key="AIzaSyBv5IyF5DMovl_T9ryDWLnGFuEhhRrtamc")
 google_model = genai.GenerativeModel("gemini-1.5-flash")
 
 # Function to query the Hugging Face Cricket Rules Model
-def query_cricket_rules_with_hf(instruction, input_text):
-    payload = {
-        "inputs": f"Instruction: {instruction}\nInput: {input_text}\nResponse:"
-    }
-    response = requests.post(HUGGING_FACE_API_URL, headers=HUGGING_FACE_HEADERS, json=payload)
-    return response.json()
 
 # Function to generate content with Google Generative AI
 def query_cricket_rules_with_google_ai(instruction, input_text):
