@@ -23,10 +23,14 @@ def query_cricket_rules_with_hf(input_text):
 def query_cricket_rules_with_google_ai(input_text):
     # Prompt to let Google decide if input is sports-related
     prompt = (
-        f"Decide if the following input is related to sports (particularly cricket): {input_text}\n"
-        "If yes, provide a relevant clear response and good explanation. If no, respond with: "
-        "\"Stick to sports, folks. I'm not your personal encyclopedia for random trivia. Got a sports question? "
-        "Fire away. Otherwise, move along.\""
+        f"Analyze the following input and determine if it is related to sports, with a specific focus on cricket: {input_text}. 
+
+If the input is about cricket or closely related to sports:
+- Provide a clear, concise, and accurate response that addresses the input with relevant information. 
+- Include a well-explained, insightful explanation that enriches understanding of the topic.
+
+If the input is unrelated to sports, respond with:
+'Stick to sports, folks. I'm not your personal encyclopedia for random trivia. Got a sports question? Fire away. Otherwise, move along.'"
     )
     response = google_model.generate_content(prompt)
     return response.text
