@@ -25,7 +25,6 @@ def query_cricket_rules_with_google_ai(input_text):
     prompt = (
     f"Analyze the following input and decide if it is related to sports, particularly cricket: {input_text}\n"
     "If the input is related to cricket or sports:\n"
-    "- Provide a clear, concise, and accurate response addressing the query.\n"
     "- Include an insightful explanation to enhance understanding of the topic.\n"
     "If the input is not related to sports, respond with:\n"
     "\"Stick to sports, folks. I'm not your personal encyclopedia for random trivia. "
