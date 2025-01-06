@@ -11,7 +11,7 @@ HUGGING_FACE_HEADERS = {"Authorization": "Bearer hf_BARDEfVLmJNiMTjjcjaVhEoGGxHD
 genai.configure(api_key="AIzaSyBv5IyF5DMovl_T9ryDWLnGFuEhhRrtamc")
 google_model = genai.GenerativeModel("gemini-1.5-flash")
 
-# Function to query the Hugging Face Cricket Rules Model
+# Function to query the Hugging Face Cricket Rulesss Model
 def query_cricket_rules_with_hf(input_text):
     payload = {
         "inputs": f"Input: {input_text}\nResponse:"
@@ -32,7 +32,7 @@ def query_cricket_rules_with_google_ai(input_text):
     return response.text
 
 # Streamlit App Layout
-st.title("Cricket xLM")
+st.title("Cricket LLM")
 st.header("Ask the model about cricket")
 
 # User input for cricket scenario
@@ -45,7 +45,7 @@ if st.button("Get Response"):
             # Try querying Hugging Face API first
             response = query_cricket_rules_with_hf(input_text)
             if "error" in response:
-                raise Exception("Error with Hugging Face API")
+                raise Exception("loading...")
             else:
                 st.success(f"Response: {response['choices'][0]['text'].strip()}")
         except Exception:
