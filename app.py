@@ -32,6 +32,16 @@ st.header("Ask the model about cricket")
 # User input for instruction and cricket scenario
 input_text = st.text_area("Input:", "The bowler steps beyond the crease line.")
 
+def query_cricket_rules_with_google_ai(input_text):
+    # Prompt to let Google decide if input is sports-related
+    prompt = (
+        f"Decide if the following input is related to sports (particularly cricket): {input_text}\n"
+        "If yes, provide a relevant response. If no, respond with: "
+        "\"Stick to sports, folks. I'm not your personal encyclopedia for random trivia. Got a sports question? "
+        "Fire away. Otherwise, move along.\""
+    )
+    response = google_model.generate_content(prompt)
+    return response.text
 # Query button
 if st.button("Get Response"):
     if instruction and input_text:
@@ -47,7 +57,8 @@ if st.button("Get Response"):
         
         except Exception as e:
             # Fallback to Google Generative AI
-            google_ai_response = query_cricket_rules_with_google_ai(instruction, input_text)
+           
+    google_ai_response = query_cricket_rules_with_google_ai(input_text)
             st.success(f"Response: {google_ai_response}")
     else:
         st.warning("Please fill out both fields!")
