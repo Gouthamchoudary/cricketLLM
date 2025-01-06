@@ -35,7 +35,7 @@ def query_cricket_rules_with_google_ai(input_text):
     return response.text
 
 # Streamlit App Layout
-st.title("Cricket LIM")
+st.title("Cricket LLM")
 st.header("Ask the model about cricket")
 
 # User input for cricket scenario
@@ -64,5 +64,6 @@ st.sidebar.write("""
 This model is fine-tuned on cricket and can answer questions like:
 - What is a no-ball in cricket?
 - What are the rules for a run out?
+- Why RCB is the best team in ipl?
 - Etc.
 """)
